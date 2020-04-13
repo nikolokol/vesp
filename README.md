@@ -29,18 +29,19 @@ composer install --no-dev
 cd ../frontend && npm install
 npm run generate
 ```
-Всё готово, осталось только открыть сайт снаружи. Для этого нужно настроить веб-сервер, чтобы он обслуживал запросы 
-к `/api` через `www/index.php`, а все остальные искал среди файлов в директории `frontend/dist`. 
+Всё готово, осталось только открыть сайт снаружи. Для этого нужно настроить веб-сервер, чтобы он обслуживал запросы
+к `/api` через `www/index.php`, а все остальные искал среди файлов в директории `frontend/dist`.
 
 Примерная конфигурация для Nginx:
 
 ```nginx
 location ~ ^/(api|image)/(.*)$ {
-    rewrite ^/(api|image)/(.*)$ /index.php?q=$2;
+    root /home/path/to/www/;
+    try_files $uri /index.php;
 }
 
 location / {
-    root    /home/path/to/built/frontend/dist/;
+    root /home/path/to/built/frontend/dist/;
     try_files $uri /200.html;
 }
 
@@ -72,7 +73,7 @@ location ~* ^.+\.(jpg|jpeg|gif|css|png|js|ico|bmp|ttf|woff|woff2|svg)$ {
 - JWT аутентификация
 - Редактирование пользователей и групп
 
-Интерфейс строится через [BootstrapVue][b-vue], иконки от [Fontawesome][fa]. 
+Интерфейс строится через [BootstrapVue][b-vue], иконки от [Fontawesome][fa].
 В будущем планируется выделить это приложение в отдельный репозиторий для более удобного расширения.
 
 
