@@ -56,7 +56,6 @@ export default {
         },
       },
     },
-    plugins: ['~/plugins/auth.js'],
   },
   router: {
     linkActiveClass: 'active',
