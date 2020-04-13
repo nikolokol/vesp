@@ -11,14 +11,19 @@
         <li>Phinx migrations</li>
       </ul>
 
-      <p>PHP core was inspired by MODX Revolution, so it may not follow modern best practices, but could be interest for MODX developers.</p>
-      <p>Feel free to use it as a starter template for your services with Vue.js frontend and REST API backend.</p>
+      <p>
+        PHP core was inspired by MODX Revolution, so it may not follow modern best practices, but could be interest for
+        MODX developers.
+      </p>
+      <p>
+        Feel free to use it as a starter template for your services with Vue.js frontend and REST API backend.
+      </p>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    auth: false,
-  }
+export default {
+  auth: false,
+}
 </script>

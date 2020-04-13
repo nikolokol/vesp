@@ -1,7 +1,7 @@
-require('dotenv').config({path: '../core/.env'});
+require('dotenv').config({path: '../core/.env'})
 
 export default {
-  //mode: 'universal',
+  // mode: 'universal',
   mode: 'spa',
   head: {
     title: process.env.APP_NAME,
@@ -12,9 +12,7 @@ export default {
       {hid: 'title', name: 'title', content: process.env.APP_NAME},
     ],
   },
-  css: [
-    '~assets/scss/styles.scss',
-  ],
+  css: ['~assets/scss/styles.scss'],
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/fontawesome.js',
@@ -22,16 +20,9 @@ export default {
     '~/plugins/modal.js',
     '~/plugins/table.js',
   ],
-  modules: [
-    'bootstrap-vue/nuxt',
-    'nuxt-izitoast',
-    '@nuxtjs/axios',
-    '@nuxtjs/auth',
-    '@nuxtjs/pwa',
-    '@nuxtjs/dotenv',
-  ],
+  modules: ['bootstrap-vue/nuxt', 'nuxt-izitoast', '@nuxtjs/axios', '@nuxtjs/auth', '@nuxtjs/pwa', '@nuxtjs/dotenv'],
   loading: {
-    color: '#fff'
+    color: '#fff',
   },
   bootstrapVue: {
     css: false,
@@ -46,7 +37,7 @@ export default {
     baseURL: process.env.SITE_URL + 'api/',
     progress: true,
     proxyHeaders: false,
-    credentials: false
+    credentials: false,
   },
   auth: {
     redirect: {
@@ -65,15 +56,11 @@ export default {
         },
       },
     },
-    plugins: [
-      '~/plugins/auth.js'
-    ]
+    plugins: ['~/plugins/auth.js'],
   },
   router: {
     linkActiveClass: 'active',
-    middleware: [
-      'auth',
-    ],
+    middleware: ['auth'],
   },
   izitoast: {
     position: 'bottomRight',
@@ -82,6 +69,6 @@ export default {
   },
   server: {
     host: '127.0.0.1',
-    port: 5112
-  }
+    port: 5112,
+  },
 }

@@ -1,21 +1,18 @@
 <?php
 
-namespace App\Processors\Admin;
+namespace App\Controllers\Admin;
 
-use App\Model\UserRole;
-use App\Processors\ObjectProcessor;
+use App\Models\UserRole;
 use Illuminate\Database\Eloquent\Builder;
+use Vesp\Controllers\ModelController;
 
-class UserRoles extends ObjectProcessor
+class UserRoles extends ModelController
 {
-
-    protected $class = 'App\Model\UserRole';
+    protected $model = UserRole::class;
     protected $scope = 'users';
-
 
     /**
      * @param UserRole $record
-     *
      * @return bool|string
      */
     protected function beforeSave($record)
@@ -68,5 +65,4 @@ class UserRoles extends ObjectProcessor
 
         return $c;
     }
-
 }

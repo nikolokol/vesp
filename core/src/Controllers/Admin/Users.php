@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Processors\Admin;
+namespace App\Controllers\Admin;
 
-use App\Model\User;
-use App\Processors\ObjectProcessor;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Slim\Http\Response;
+use Psr\Http\Message\ResponseInterface;
+use Vesp\Controllers\ModelController;
 
-class Users extends ObjectProcessor
+class Users extends ModelController
 {
-
-    protected $class = 'App\Model\User';
+    protected $model = User::class;
     protected $scope = 'users';
 
-
     /**
-     * @return Response
+     * @return ResponseInterface
      */
     public function patch()
     {
@@ -26,10 +24,8 @@ class Users extends ObjectProcessor
         return parent::patch();
     }
 
-
     /**
      * @param User $record
-     *
      * @return bool|string
      */
     protected function beforeSave($record)
@@ -58,28 +54,26 @@ class Users extends ObjectProcessor
         return true;
     }
 
-
     /**
      * @param Builder $c
-     *
      * @return Builder
      */
     protected function beforeCount($c)
     {
         if ($query = trim($this->getProperty('query'))) {
-            $c->where(function (Builder $q) use ($query) {
-                $q->where('username', 'LIKE', "%$query%");
-                $q->orWhere('fullname', 'LIKE', "%$query%");
-            });
+            $c->where(
+                function (Builder $q) use ($query) {
+                    $q->where('username', 'LIKE', "%$query%");
+                    $q->orWhere('fullname', 'LIKE', "%$query%");
+                }
+            );
         }
 
         return $c;
     }
 
-
     /**
      * @param Builder $c
-     *
      * @return Builder
      */
     protected function afterCount($c)
@@ -89,5 +83,4 @@ class Users extends ObjectProcessor
 
         return $c;
     }
-
 }

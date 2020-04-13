@@ -1,10 +1,15 @@
 <?php
 
-use App\Model\User;
+use App\Models\User;
 use Phinx\Seed\AbstractSeed;
 
 class Users extends AbstractSeed
 {
+    public function getDependencies()
+    {
+        return ['UserRoles'];
+    }
+
     public function run()
     {
         $users = [
